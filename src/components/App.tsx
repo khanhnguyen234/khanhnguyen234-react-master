@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import * as styles from './styles.scss';
-import { scrollToOffset } from '@khanhnguyen/react-common/src/utils/window'
+import { scrollToOffset } from '@khanhnguyen234/react-common/src/utils/window'
 // import styles from './styles.scss';
 
 import PageInterface from '../PageInterface';
