@@ -1,5 +1,5 @@
 {
-  "name": "@khanhnguyen/react-master",
+  "name": "@khanhnguyen234/react-master",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
@@ -11,6 +11,7 @@
   "author": "khanhnguyen234",
   "license": "ISC",
   "dependencies": {
+    "@khanhnguyen234/react-common": "0.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },

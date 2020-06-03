@@ -1,5 +1,11 @@
 $body-color: red;
+$color-notification: green;
+
 
 .body {
   color: $body-color;
+}
+
+.notification {
+  color: $color-notification;
 }
