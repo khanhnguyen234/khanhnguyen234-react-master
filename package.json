@@ -11,7 +11,8 @@
   "author": "khanhnguyen234",
   "license": "ISC",
   "dependencies": {
-    "@khanhnguyen234/react-common": "0.0.4",
+    "@khanhnguyen234/react-common": "0.0.5",
+    "@khanhnguyen234/react-components": "0.0.1",
     "classnames": "^2.2.6",
     "history": "^4.10.1",
     "react": "^16.13.1",
