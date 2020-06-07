@@ -1,19 +1,32 @@
 
 import * as React from 'react';
 import * as styles from './styles.scss';
-import { scrollToOffset } from '@khanhnguyen234/react-common/src/utils/window'
-// import styles from './styles.scss';
+import { scrollToOffset } from '@khanhnguyen234/react-common'
+import { ButtonExt, Title } from '@khanhnguyen234/react-components'
 
 import PageInterface from '../PageInterface';
 
 const App = (props: PageInterface) => {
   const scrollTop = () => {
-    scrollToOffset({top: 0})
+    scrollToOffset({top: 9000})
   }
+
   return (
     <div className={styles.body}>
-      <h2 className={styles.notification}>This is top</h2>
+      <ButtonExt onClick={scrollTop} className={styles.btn}>
+        Default
+      </ButtonExt>
+      
+      <Title>
+        Title default (red color)
+      </Title>
 
+      <Title className={styles.title}>
+        Title has been override (green color)
+      </Title>
+
+      --------------------------------------------------------------------------------------------
+      
       <h1>React + Typescript + Webpack</h1>
       <p>The color of this page is: {props.color}</p>
 
@@ -76,10 +89,6 @@ const App = (props: PageInterface) => {
 
       <h1>React + Typescript + Webpack</h1>
       <p>The color of this page is: {props.color}</p>
-
-      <button onClick={scrollTop}>
-        scrollToOffset
-      </button>
     </div>
   );
 }
