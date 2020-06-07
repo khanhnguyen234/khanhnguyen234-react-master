@@ -13,6 +13,8 @@ const App = (props: PageInterface) => {
 
   return (
     <div className={styles.body}>
+      <h1>React + Typescript + Webpack + Workbox</h1>
+
       <ButtonExt onClick={scrollTop} className={styles.btn}>
         Default
       </ButtonExt>
