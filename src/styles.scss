@@ -2,18 +2,17 @@ $body-color: red;
 $color-notification: green;
 
 
-.body {
-  color: $body-color;
-}
-
-.notification {
-  color: $color-notification;
-}
-
-.btn {
-  background-color: orange;
+.example {
+  * {
+    display: inline;
+    margin: 8px;
+  }
 }
 
 .title {
-  color: green;
+  font-size: 38px;
+}
+
+.overrideNotWorking {
+  background-color: orange;
 }

@@ -45,5 +45,9 @@ module.exports = {
         clientsClaim: true,
         skipWaiting: true,
       }),
-  ]
+  ],
+  devServer: {
+    historyApiFallback: true,
+  }
+
 }
