@@ -1,34 +1,31 @@
 import * as React from 'react';
-import { Route, Switch, BrowserRouter, Link } from 'react-router-dom';
-import * as styles from './styles.scss';
 import { scrollToOffset } from '@khanhnguyen234/react-common';
 import { ButtonExt, Title } from '@khanhnguyen234/react-components';
-import ProductListing from './modules/product-listing';
-import ProductDetail from './modules/product-detail';
+import useHistory from '@khanhnguyen234/react-master/src/pwa/hooks/useHistory';
+import * as styles from './styles.scss';
 
-const App = (props) => {
-  const scrollTop = () => {
+const App = ({ routeComponent }) => {
+  const history = useHistory();
+
+  const goHome = () => {
     scrollToOffset({ top: 0 });
-    // TODO: pushState not switch component, must use Link react-router-dom
-    // window.history.pushState(null, null, `/`);
+    history.push('/');
   };
 
   return (
     <div>
-      <BrowserRouter>
         <div className={styles.example}>
-          <ButtonExt onClick={scrollTop} className={styles.overrideNotWorking}>
-            <Link to="/">
-              Home
-            </Link>
+          <ButtonExt
+            onClick={goHome}
+            className={styles.overrideNotWorking}
+          >
+            Home
           </ButtonExt>
-          <Title className={styles.title}>React + Typescript + Webpack + Workbox</Title>
+          <Title className={styles.title}>
+            React + Typescript + Webpack + Workbox
+          </Title>
         </div>
-        <Switch>
-          <Route exact path="/" component={ProductListing} />
-          <Route exact path="/detail" component={ProductDetail} />
-        </Switch>
-      </BrowserRouter>
+        {routeComponent}
     </div>
   );
 };
