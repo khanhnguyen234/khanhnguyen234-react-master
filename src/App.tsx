@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { Button } from '@material-ui/core';
 import { scrollToOffset } from '@khanhnguyen234/react-common';
-import { ButtonExt, Title } from '@khanhnguyen234/react-components';
+import { Grid, Title } from '@khanhnguyen234/react-components';
 import useHistory from '@khanhnguyen234/react-master/src/pwa/hooks/useHistory';
 import * as styles from './styles.scss';
 
@@ -14,18 +15,20 @@ const App = ({ routeComponent }) => {
 
   return (
     <div>
-        <div className={styles.example}>
-          <ButtonExt
-            onClick={goHome}
-            className={styles.overrideNotWorking}
-          >
-            Home
-          </ButtonExt>
-          <Title className={styles.title}>
-            React + Typescript + Webpack + Workbox
-          </Title>
-        </div>
-        {routeComponent}
+      <Grid alignItem="center" container className={styles.example}>
+        <Button
+          variant="contained"
+          color="secondary"
+          size="small"
+          onClick={goHome}
+        >
+          Home
+        </Button>
+        <Title className={styles.title}>
+          React + Typescript + Webpack + Workbox
+        </Title>
+      </Grid>
+      {routeComponent}
     </div>
   );
 };

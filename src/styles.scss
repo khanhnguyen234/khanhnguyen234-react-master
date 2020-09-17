@@ -3,6 +3,7 @@ $color-notification: green;
 
 
 .example {
+  margin-bottom: 40px;
   * {
     display: inline;
     margin: 8px;
@@ -11,6 +12,7 @@ $color-notification: green;
 
 .title {
   font-size: 38px;
+  background-color: aliceblue;
 }
 
 .overrideNotWorking {

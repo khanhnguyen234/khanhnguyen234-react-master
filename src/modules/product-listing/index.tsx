@@ -1,11 +1,11 @@
 import * as React from 'react';
-import ProductCard from '../../components/product-card';
+import { Grid } from '@khanhnguyen234/react-components';
 import useHistory from '@khanhnguyen234/react-master/src/pwa/hooks/useHistory';
-import PRODUCTS from "./mock"
+import ProductCard from '../../components/product-card';
+import PRODUCTS from './mock';
 import * as styles from './styles.scss';
 
 const ProductListing = () => {
-
   const history = useHistory();
   const handleClickCard = (name) => {
     history.push('/detail');
@@ -13,9 +13,11 @@ const ProductListing = () => {
 
   return (
     <React.Fragment>
-      <div className={styles.productListing}>
+      <Grid item container spacing={2}>
         {PRODUCTS.map((item) => (
-          <div
+          <Grid
+            item
+            xs={2}
             key={item.id}
             className={styles.card}
             onClick={() => handleClickCard(item.name)}
@@ -25,9 +27,9 @@ const ProductListing = () => {
               name={item.name}
               price={item.price}
             />
-          </div>
+          </Grid>
         ))}
-      </div>
+      </Grid>
     </React.Fragment>
   );
 };
