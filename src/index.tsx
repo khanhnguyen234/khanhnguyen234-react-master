@@ -20,12 +20,12 @@ import ReactApplicationContext from './pwa/react-application-context';
 import ReactHistoryContext from './pwa/react-history-context';
 import ReactRouteContext from './pwa/react-route-context';
 import createHistoryContext from './pwa/create-history-context';
-import ProductListing from './modules/product-listing';
+import ProductListing from './modules/home';
 import ProductDetail from './modules/product-detail';
 import createStore from './redux/store';
 import { registerReducers, baseReducer } from './redux/reducers';
 import { Router } from './utils/routing';
-import ProductListingData from './modules/product-listing/dataSrc';
+import ProductListingData from './modules/home/dataSrc';
 
 declare global {
   interface Window {
@@ -55,7 +55,7 @@ const applicationContext = {
 
 const ROUTES = [
   {
-    path: '/detail',
+    path: '/:name',
     component: ProductDetail,
   },
   {

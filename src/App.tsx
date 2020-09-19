@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button } from '@material-ui/core';
 
 import { scrollToOffset } from '@khanhnguyen234/react-common';
-import { Grid, Title } from '@khanhnguyen234/react-components';
+import { Grid, Title, Box } from '@khanhnguyen234/react-components';
 import useHistory from '@khanhnguyen234/react-master/src/pwa/hooks/useHistory';
 
 import * as styles from './styles.scss';
@@ -16,13 +16,27 @@ const App = ({ routeComponent }) => {
   };
 
   return (
-    <div>
-      <Grid alignItem="center" container className={styles.example}>
-        <Button variant="contained" color="secondary" size="small" onClick={goHome}>
-          Home
-        </Button>
-        <Title className={styles.title}>React + Typescript + Webpack + Workbox</Title>
-      </Grid>
+    <div className={styles.App}>
+      <Box marginBottom={10}>
+        <Grid alignItem="center" container>
+          <Button
+            variant="contained"
+            color="secondary"
+            size="small"
+            onClick={goHome}
+            style={{
+              fontSize: '2rem',
+              marginRight: '0.8rem',
+            }}
+          >
+            Home
+          </Button>
+          <Title className={styles.title}>
+            React + Typescript + Webpack + Workbox
+          </Title>
+        </Grid>
+      </Box>
+
       {routeComponent}
     </div>
   );

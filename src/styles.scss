@@ -1,18 +1,14 @@
 $body-color: red;
 $color-notification: green;
 
-
-.example {
-  margin-bottom: 40px;
-  * {
-    display: inline;
-    margin: 8px;
-  }
+html {
+  font-size: 10px;
 }
 
 .title {
   font-size: 38px;
   background-color: aliceblue;
+  margin: 0;
 }
 
 .overrideNotWorking {
