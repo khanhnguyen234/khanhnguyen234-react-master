@@ -4,9 +4,23 @@ import useHistory from '@khanhnguyen234/react-master/src/pwa/hooks/useHistory';
 import ProductCard from '../../components/product-card';
 import PRODUCTS from './mock';
 import * as styles from './styles.scss';
+import { useDispatch } from 'react-redux';
+import { fetcher } from '../../utils/fetcher';
+import { actionType } from './dataSrc';
 
 const ProductListing = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(
+      fetcher(
+        'https://jsonplaceholder.typicode.com/todos/1',
+        actionType.fetchProductList,
+      ),
+    );
+  }, []);
+
   const handleClickCard = (name) => {
     history.push('/detail');
   };

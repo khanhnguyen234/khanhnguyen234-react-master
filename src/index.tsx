@@ -1,8 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Store, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-
 // if ('serviceWorker' in navigator) {
 //   window.addEventListener('load', () => {
 //     navigator.serviceWorker.register('/service-worker.js').then(registration => {
@@ -19,94 +20,35 @@ import ReactApplicationContext from './pwa/react-application-context';
 import ReactHistoryContext from './pwa/react-history-context';
 import ReactRouteContext from './pwa/react-route-context';
 import createHistoryContext from './pwa/create-history-context';
-import { matchPath } from './pwa/helpers/matchPath';
-import { parseQuery } from './pwa/helpers/qs';
 import ProductListing from './modules/product-listing';
 import ProductDetail from './modules/product-detail';
+import createStore from './redux/store';
+import { registerReducers, baseReducer } from './redux/reducers';
+import { Router } from './utils/routing';
+import ProductListingData from './modules/product-listing/dataSrc';
 
-function matchRoutes(
-  pathname: string,
-  routings: RoutingEntry[],
-): {
-  component?: React.ElementType;
-  match: any | null;
-} {
-  let match: {} = null;
-  let component: React.ElementType;
-  routings.forEach((child) => {
-    if (match === null) {
-      match = matchPath(pathname, child.path);
-      if (match !== null) {
-        // component = child.module;
-        component = child.component;
-      }
-    }
-  });
-  return {
-    match,
-    component,
-  };
-}
-
-const computeRoutingChildren = (
-  routing: RoutingEntry[],
-  history: History,
-) => {
-  const matchResult = matchRoutes(history.location.pathname, routing);
-  let Component: React.ElementType = 'div';
-  let params = {};
-  if (matchResult.match !== null) {
-    Component = matchResult.component;
-    params = matchResult.match.params;
+declare global {
+  interface Window {
+    [key: string]: any;
   }
-
-  return {
-    Component,
-    match: {
-      params,
-      pathname: history.location.pathname,
-      search: history.location.search,
-      state: history.location.state,
-      hash: history.location.hash,
-      getQuery: () => parseQuery(history.location.search),
-    },
-  };
-};
-
-interface RouterProps {
-  routing: RoutingEntry[];
-  history: History;
-  childrenProps: any;
-}
-
-interface RoutingEntry {
-  path: string;
-  component: React.ElementType;
-}
-
-function Router({ routing, history, childrenProps }: RouterProps) {
-  const [matchedResult, setMatchedResult] = React.useState(() => {
-    return computeRoutingChildren(routing, history);
-  });
-  const hasRouteChildren = routing.length > 0;
-  React.useEffect(() => {
-    if (hasRouteChildren) {
-      return history.listen(() => {
-        setMatchedResult(computeRoutingChildren(routing, history));
-      });
-    }
-  }, []);
-
-  return (
-    <ReactRouteContext.Provider value={matchedResult.match}>
-      <matchedResult.Component {...childrenProps} />
-    </ReactRouteContext.Provider>
-  );
 }
 
 const history = createBrowserHistory();
 const historyContext = createHistoryContext(history);
+const store: Store = createStore({
+  history,
+  getApplicationContext: () => applicationContext,
+  reducers: combineReducers({ baseReducer }),
+  initialState: window.__STATE__ || {},
+  enableReduxDevTools: true,
+});
+
+const dataSources = [ProductListingData];
+const regisReducers = registerReducers(store, dataSources);
+
 const applicationContext = {
+  registerReducers: regisReducers,
+  store,
   history,
   historyContext,
 };
@@ -125,18 +67,18 @@ const ROUTES = [
 ReactDOM.render(
   <BrowserRouter>
     <ReactApplicationContext.Provider value={applicationContext}>
-      <ReactHistoryContext.Provider
-        value={applicationContext.historyContext}
-      >
-        <App
-          routeComponent={
-            <Router
-              routing={ROUTES}
-              history={applicationContext.history}
-              childrenProps={{}}
-            />
-          }
-        />
+      <ReactHistoryContext.Provider value={applicationContext.historyContext}>
+        <Provider store={store}>
+          <App
+            routeComponent={
+              <Router
+                routing={ROUTES}
+                history={applicationContext.history}
+                childrenProps={{}}
+              />
+            }
+          />
+        </Provider>
       </ReactHistoryContext.Provider>
     </ReactApplicationContext.Provider>
   </BrowserRouter>,
