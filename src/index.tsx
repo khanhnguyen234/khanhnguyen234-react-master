@@ -15,6 +15,8 @@ import App from './App';
 // }
 // ReactDOM.render(<App/>, document.getElementById("root"))
 
+import storages from '@khanhnguyen234/react-common/src/storages';
+
 import { createBrowserHistory, History } from 'history';
 import ReactApplicationContext from './pwa/react-application-context';
 import ReactHistoryContext from './pwa/react-history-context';
@@ -46,9 +48,14 @@ const store: Store = createStore({
 const dataSources = [ProductListingData];
 const regisReducers = registerReducers(store, dataSources);
 
+function getStorage(name: string) {
+  return storages()[name];
+}
+
 const applicationContext = {
   registerReducers: regisReducers,
   store,
+  getStorage,
   history,
   historyContext,
 };
