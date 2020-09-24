@@ -15,32 +15,46 @@ import * as styles from './styles.scss';
 const App = ({ routeComponent }) => {
   const history = useHistory();
   const cookie = useStorage(COOKIE_STORAGE);
-  console.log(cookie.get('Name'));
+  console.log("cookie.get('Name')", cookie.get('Name'));
 
   const goHome = () => {
     scrollToOffset({ top: 0 });
     history.push('/');
   };
 
+  const goCreateProduct = () => {
+    history.push('/admin/product/create');
+  };
+
   return (
     <div className={styles.App}>
       <Box marginBottom={10}>
-        <Grid alignItem="center" container>
-          <Button
-            variant="contained"
-            color="secondary"
-            size="small"
-            onClick={goHome}
-            style={{
-              fontSize: '2rem',
-              marginRight: '0.8rem',
-            }}
-          >
-            Home
-          </Button>
-          <Title className={styles.title}>
-            React + Typescript + Webpack + Workbox
-          </Title>
+        <Grid alignItem="center" container spacing={4}>
+          <Grid item xs="auto">
+            <Button
+              variant="contained"
+              color="secondary"
+              size="large"
+              onClick={goHome}
+            >
+              Home
+            </Button>
+          </Grid>
+          <Grid item xs="auto">
+            <Button
+              variant="contained"
+              color="secondary"
+              size="large"
+              onClick={goCreateProduct}
+            >
+              Create
+            </Button>
+          </Grid>
+          <Grid item xs={true}>
+            <Title className={styles.title}>
+              React + Typescript + Webpack + Workbox
+            </Title>
+          </Grid>
         </Grid>
       </Box>
 
