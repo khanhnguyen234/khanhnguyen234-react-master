@@ -1,16 +1,14 @@
 import { useSelector } from 'react-redux';
-import ProdictListingData from "../dataSrc"
+import ProdictListingData from '../dataSrc';
 
 const useProductListing = () => {
-  const store = useSelector((state: any) =>
-    state[ProdictListingData.name],
-  );
+  const store = useSelector((state: any) => state[ProdictListingData.name]);
 
-  const products = store?.data?.productList?.result || []
-  
+  const products = store?.data?.productList || [];
+
   return {
-    products
-  }
-}
+    products,
+  };
+};
 
-export default useProductListing
+export default useProductListing;

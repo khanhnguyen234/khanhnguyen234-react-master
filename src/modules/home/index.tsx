@@ -4,10 +4,11 @@ import useHistory from '@khanhnguyen234/react-master/src/pwa/hooks/useHistory';
 import ProductCard from '../../components/product-card';
 import * as styles from './styles.scss';
 import { useDispatch } from 'react-redux';
-import { fetcher } from '../../utils/fetcher';
+import { requestApiAction } from '../../utils/fetcher';
 import { actionType } from './dataSrc';
 import useProductListing from './hooks/use-product-listing';
 import useProductFlashSale from './hooks/use-product-flash-sale';
+import { DEFAULT_PRODUCT_URL, INTERNAL_URLS } from './const';
 
 const ProductListing = () => {
   const history = useHistory();
@@ -17,18 +18,21 @@ const ProductListing = () => {
 
   React.useEffect(() => {
     dispatch(
-      fetcher('http://localhost:7003/product', actionType.fetchProductList),
+      requestApiAction(
+        'http://localhost:7003/product',
+        actionType.fetchProductList,
+      ),
     );
     dispatch(
-      fetcher(
-        'http://localhost:7003/product/flash-sale?time=1601448417&limit=5',
+      requestApiAction(
+        'http://localhost:7003/product/flash-sale?time=1601448417&limit=5&src=db',
         actionType.fetchProductFlashSale,
       ),
     );
   }, []);
 
-  const handleClickCard = (name) => {
-    history.push(`${name}`);
+  const handleClickCard = (id) => {
+    history.push(`${INTERNAL_URLS.adminProductDetail.replace(':id', id)}`);
   };
 
   return (
@@ -48,10 +52,10 @@ const ProductListing = () => {
               xs={2}
               key={item.id}
               className={styles.card}
-              onClick={() => handleClickCard(item.name)}
+              onClick={() => handleClickCard(item.id)}
             >
               <ProductCard
-                image={item.image_url}
+                image={item.image_url || DEFAULT_PRODUCT_URL}
                 name={item.name}
                 price={item.price}
               />
@@ -74,10 +78,10 @@ const ProductListing = () => {
               xs={2}
               key={item.id}
               className={styles.card}
-              onClick={() => handleClickCard(item.name)}
+              onClick={() => handleClickCard(item.id)}
             >
               <ProductCard
-                image={item.image_url}
+                image={item.image_url || DEFAULT_PRODUCT_URL}
                 name={item.name}
                 price={item.price}
               />

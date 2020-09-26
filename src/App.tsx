@@ -27,38 +27,39 @@ const App = ({ routeComponent }) => {
   };
 
   return (
-    <div className={styles.App}>
-      <Box marginBottom={10}>
-        <Grid alignItem="center" container spacing={4}>
-          <Grid item xs="auto">
-            <Button
-              variant="contained"
-              color="secondary"
-              size="large"
-              onClick={goHome}
-            >
-              Home
-            </Button>
-          </Grid>
-          <Grid item xs="auto">
-            <Button
-              variant="contained"
-              color="secondary"
-              size="large"
-              onClick={goCreateProduct}
-            >
-              Create
-            </Button>
-          </Grid>
-          <Grid item xs={true}>
-            <Title className={styles.title}>
-              React + Typescript + Webpack + Workbox
-            </Title>
+    <div className={styles.rootApp}>
+      <Grid item container spacing={4}>
+        <Grid item>
+          <Grid item container alignItem="center" spacing={2}>
+            <Grid item xs="auto">
+              <Button
+                variant="contained"
+                color="secondary"
+                size="large"
+                onClick={goHome}
+              >
+                Home
+              </Button>
+            </Grid>
+            <Grid item xs="auto">
+              <Button
+                variant="contained"
+                color="secondary"
+                size="large"
+                onClick={goCreateProduct}
+              >
+                Create
+              </Button>
+            </Grid>
+            <Grid item xs={true}>
+              <Title className={styles.title}>
+                React + Typescript + Webpack + Workbox
+              </Title>
+            </Grid>
           </Grid>
         </Grid>
-      </Box>
-
-      {routeComponent}
+        <Grid item>{routeComponent}</Grid>
+      </Grid>
     </div>
   );
 };

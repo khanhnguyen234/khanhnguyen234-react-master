@@ -1,11 +1,12 @@
 import { createContext } from 'react';
 
 export interface RouteContext<Q = Object, P = Object> {
-  params: P;
+  // params: P;
+  params: any;
   search: string;
   state: any;
   hash: string;
-  pathname: string
+  pathname: string;
   getQuery: () => any;
 }
 

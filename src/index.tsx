@@ -1,26 +1,34 @@
 import * as React from 'react';
 import createClientApp from './create-client-app';
+
 import ProductDetail from './modules/product-detail';
-import ProductListing from './modules/home';
-import AdminProductCreate from './modules/admin-product-create';
+import Home from './modules/home';
+import AdminProductCreate from './modules/admin-product';
+
 import ProductListingData from './modules/home/dataSrc';
+import AdminProductCreateData from './modules/admin-product/dataSrc';
+import { INTERNAL_URLS } from './modules/home/const';
 
 const ROUTES = [
   {
-    path: '/admin/product/create',
+    path: INTERNAL_URLS.adminProductCreate,
     component: AdminProductCreate,
   },
   {
-    path: '/:name',
+    path: INTERNAL_URLS.adminProductDetail,
+    component: AdminProductCreate,
+  },
+  {
+    path: INTERNAL_URLS.productDetail,
     component: ProductDetail,
   },
   {
-    path: '/',
-    component: ProductListing,
+    path: INTERNAL_URLS.home,
+    component: Home,
   },
 ];
 
-const reduxSources = [ProductListingData];
+const reduxSources = [ProductListingData, AdminProductCreateData];
 
 createClientApp({
   routes: ROUTES,
