@@ -8,15 +8,11 @@
 
   &:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 2px 0 rgba(97, 23, 23, 0.3);
+    box-shadow: 0 0 50px 0 rgb(0, 255, 183);
   }
 
   .info {
-    margin: 12px;
-
     .name {
-      margin-bottom: 12px;
-      font-size: 16px;
       font-weight: bold;
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -26,7 +22,6 @@
 
     .price {
       color: red;
-      font-size: 16px;
     }
   }
 }

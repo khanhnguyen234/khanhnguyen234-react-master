@@ -153,6 +153,7 @@ const AdminProductCreate = ({ product, errMes, handleSubmitForm }) => {
             controls
             loop
             playing={true}
+            muted
             width="100%"
           />
         </Grid>

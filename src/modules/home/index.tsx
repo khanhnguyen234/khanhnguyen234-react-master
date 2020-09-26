@@ -27,7 +27,7 @@ const ProductListing = () => {
     );
     dispatch(
       requestApiAction(
-        'http://localhost:7003/product/flash-sale?time=1601448417&limit=5&src=db',
+        'http://localhost:7003/product/flash-sale?time=1601448417&limit=12&src=db',
         actionType.fetchProductFlashSale,
       ),
     );
