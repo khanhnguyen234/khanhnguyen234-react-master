@@ -5,9 +5,11 @@ const useProductListing = () => {
   const store = useSelector((state: any) => state[ProdictListingData.name]);
 
   const products = store?.data?.productList || [];
+  const status = store?.data?.status;
 
   return {
     products,
+    status,
   };
 };
 

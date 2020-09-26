@@ -1,3 +1,9 @@
+export const STATUS = {
+  isLoading: 'isLoading',
+  isSuccess: 'isSuccess',
+  isError: 'isError',
+};
+
 export function requestApiAction(endpoint, actionType, options: any = {}) {
   if (options.body) {
     if (
@@ -10,14 +16,21 @@ export function requestApiAction(endpoint, actionType, options: any = {}) {
   }
 
   return async (dispatch) => {
+    dispatch({ type: actionType, status: STATUS.isLoading });
     await fetch(endpoint, options)
       .then(parse)
       .then(async (response) => {
-        dispatch({ type: actionType, ...response });
+        dispatch({ type: actionType, ...response, status: STATUS.isSuccess });
         return response;
       })
       .catch((error) => {
-        dispatch({ type: actionType, data: error, success: false, error });
+        dispatch({
+          type: actionType,
+          data: error,
+          success: false,
+          status: STATUS.isError,
+          error,
+        });
         return error;
       });
   };

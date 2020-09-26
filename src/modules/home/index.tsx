@@ -1,19 +1,21 @@
 import * as React from 'react';
-import { Grid, Box } from '@khanhnguyen234/react-components';
+import { Box, Grid, Loading } from '@khanhnguyen234/react-components';
 import useHistory from '@khanhnguyen234/react-master/src/pwa/hooks/useHistory';
 import ProductCard from '../../components/product-card';
 import * as styles from './styles.scss';
 import { useDispatch } from 'react-redux';
-import { requestApiAction } from '../../utils/fetcher';
+import { requestApiAction, STATUS } from '../../utils/fetcher';
 import { actionType } from './dataSrc';
 import useProductListing from './hooks/use-product-listing';
 import useProductFlashSale from './hooks/use-product-flash-sale';
 import { DEFAULT_PRODUCT_URL, INTERNAL_URLS } from './const';
+import { BackdropVariant } from '../../../../khanhnguyen234-react-components/src/components/Loading';
+import { LOADING_IMAGE_URL } from '../../lib/const';
 
 const ProductListing = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { products: productListing } = useProductListing();
+  const { products: productListing, status } = useProductListing();
   const { products: productFlashSale } = useProductFlashSale();
 
   React.useEffect(() => {
@@ -37,6 +39,9 @@ const ProductListing = () => {
 
   return (
     <Grid container spacing={6}>
+      {status === STATUS.isLoading && (
+        <Loading variant={BackdropVariant.grey} imageUrl={LOADING_IMAGE_URL} />
+      )}
       <Grid item container>
         <Box marginBottom={5}>
           <Grid item className={styles.header} alignItem="center">

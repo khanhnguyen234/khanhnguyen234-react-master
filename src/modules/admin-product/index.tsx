@@ -1,18 +1,17 @@
 import * as React from 'react';
-import { Grid, Box } from '@khanhnguyen234/react-components';
+import { Grid, Loading } from '@khanhnguyen234/react-components';
 import useRoute from '@khanhnguyen234/react-master/src/pwa/hooks/useRoute';
 import ProductForm from './components/product-form';
 import useProduct from './hooks/use-product';
-import { requestApiAction } from '../../utils/fetcher';
+import { requestApiAction, STATUS } from '../../utils/fetcher';
 import { actionType } from './dataSrc';
 import { useDispatch } from 'react-redux';
-import { getUnixTime } from 'date-fns';
 import { FORM_PROPS } from './const';
 import { datetimeLocalToUnix } from '../../utils/date';
 
 const AdminProductCreate = () => {
   const dispatch = useDispatch();
-  const { product, errMes } = useProduct();
+  const { product, errMes, status } = useProduct();
   const route = useRoute();
   const id = route.params?.id;
   const pathname = route.pathname;
@@ -66,6 +65,9 @@ const AdminProductCreate = () => {
 
   return (
     <Grid>
+      {status === STATUS.isLoading && (
+        <Loading imageUrl="https://scontent.fsgn5-7.fna.fbcdn.net/v/t1.0-9/120242670_756487215198042_6677672543451741224_n.jpg?_nc_cat=1&_nc_sid=825194&_nc_ohc=FR6klChG_0QAX9qvNus&_nc_ht=scontent.fsgn5-7.fna&oh=8aaf973e011ddb9d081940730fa32ec2&oe=5F96814C" />
+      )}
       <ProductForm
         product={_product}
         errMes={errMes}

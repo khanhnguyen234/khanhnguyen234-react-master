@@ -19,6 +19,7 @@ export default {
           return {
             ...state,
             data: action.data,
+            status: action.status,
             success: action.success,
           };
         },
@@ -34,6 +35,7 @@ export default {
           return {
             ...state,
             success: action?.success,
+            status: action.status,
             error: action?.error?.error,
           };
         },

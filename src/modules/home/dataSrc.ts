@@ -20,6 +20,7 @@ export default {
             ...state,
             data: {
               ...state.data,
+              status: action.status,
               productList: action.data,
             },
             success: action.success,
@@ -38,6 +39,7 @@ export default {
             ...state,
             data: {
               ...state.data,
+              status: action.status,
               productFlashSale: action.data,
             },
             success: action.success,
