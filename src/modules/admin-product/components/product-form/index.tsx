@@ -13,13 +13,20 @@ import * as styles from './styles.scss';
 import ReactPlayer from 'react-player';
 
 const AdminProductCreate = ({ product, handleSubmitForm }) => {
-  const { register, handleSubmit, errors, getValues } = useForm({
+  const { register, handleSubmit, errors } = useForm({
     defaultValues: DEFAULT_PRODUCT,
   });
 
+  const [form, setForm] = React.useState(
+    _isEmpty(product) ? DEFAULT_PRODUCT : product,
+  );
+
+  const handleChange = (name, event) => {
+    setForm(event.target.value);
+  };
+
   const registerFactory = React.useCallback(
     (name, validate?) => {
-      const form = _isEmpty(product) ? DEFAULT_PRODUCT : product;
       const field = FORM_PROPS[name];
       const value = form[FORM_PROPS[name]];
       const error = errors[field];
@@ -32,6 +39,8 @@ const AdminProductCreate = ({ product, handleSubmitForm }) => {
         variant: 'outlined',
         size: 'small',
         fullWidth: true,
+        InputLabelProps: { shrink: true },
+        onChange: (e) => handleChange(field, e),
       } as any;
 
       if (validate) {
@@ -45,7 +54,7 @@ const AdminProductCreate = ({ product, handleSubmitForm }) => {
 
       return props;
     },
-    [register, errors, product],
+    [register, errors, form],
   );
 
   const onSubmit = (data) => {
