@@ -14,6 +14,6 @@ export const FORM_PROPS = {
 
 export const DEFAULT_PRODUCT = {
   image_url: DEFAULT_IMAGE_URL,
-  flash_sale_unix_start: format(new Date('2017-01-01'), 'yyyy-MM-dd'),
-  flash_sale_unix_end: format(new Date('2030-01-01'), 'yyyy-MM-dd'),
+  flash_sale_unix_start: '2020-05-24T10:30',
+  flash_sale_unix_end: '2020-12-24T10:30',
 };

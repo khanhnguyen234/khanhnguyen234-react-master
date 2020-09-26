@@ -8,10 +8,11 @@ import { actionType } from './dataSrc';
 import { useDispatch } from 'react-redux';
 import { getUnixTime } from 'date-fns';
 import { FORM_PROPS } from './const';
+import { datetimeLocalToUnix } from '../../utils/date';
 
 const AdminProductCreate = () => {
   const dispatch = useDispatch();
-  const { product } = useProduct();
+  const { product, errMes } = useProduct();
   const route = useRoute();
   const id = route.params?.id;
   const pathname = route.pathname;
@@ -38,11 +39,13 @@ const AdminProductCreate = () => {
   }, [pathname, product]);
 
   const handleSubmit = (data) => {
+    setProduct(data);
+
     data[FORM_PROPS.price] = +data[FORM_PROPS.price];
-    data[FORM_PROPS.flash_sale_unix_start] = getUnixTime(
+    data[FORM_PROPS.flash_sale_unix_start] = datetimeLocalToUnix(
       new Date(data[FORM_PROPS.flash_sale_unix_start]),
     );
-    data[FORM_PROPS.flash_sale_unix_end] = getUnixTime(
+    data[FORM_PROPS.flash_sale_unix_end] = datetimeLocalToUnix(
       new Date(data[FORM_PROPS.flash_sale_unix_end]),
     );
 
@@ -63,7 +66,11 @@ const AdminProductCreate = () => {
 
   return (
     <Grid>
-      <ProductForm product={_product} handleSubmitForm={handleSubmit} />
+      <ProductForm
+        product={_product}
+        errMes={errMes}
+        handleSubmitForm={handleSubmit}
+      />
     </Grid>
   );
 };

@@ -33,7 +33,6 @@ export default {
         handler: (state, action) => {
           return {
             ...state,
-            data: action?.data,
             success: action?.success,
             error: action?.error?.error,
           };
