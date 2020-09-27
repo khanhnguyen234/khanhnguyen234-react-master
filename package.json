@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production",
-    "start": "http-server dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server dist"
   },
   "author": "khanhnguyen234",
   "license": "ISC",
@@ -40,6 +39,7 @@
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.5.3",
+    "dotenv": "^8.2.0",
     "html-webpack-plugin": "^4.3.0",
     "http-server": "^0.12.3",
     "node-sass": "^4.14.1",

@@ -1,8 +1,16 @@
 const path = require('path');
+const dotenv = require('dotenv');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+// https://medium.com/@trekinbami/using-environment-variables-in-react-6b0a99d83cf5
+const env = dotenv.config().parsed;
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  return prev;
+}, {});
 
 module.exports = {
   entry: './src/index.tsx',
@@ -58,6 +66,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
+    new webpack.DefinePlugin(envKeys),
     new CleanWebpackPlugin(),
     // new WorkboxPlugin.GenerateSW({
     //   // these options encourage the ServiceWorkers to get in there fast

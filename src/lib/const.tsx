@@ -1,3 +1,7 @@
+export const CONFIG = {
+  API_DOMAIN: process.env.API_DOMAIN,
+};
+
 export const INTERNAL_URLS = {
   adminProductDetail: '/admin/product/:id',
   adminProductCreate: '/admin/product/create',

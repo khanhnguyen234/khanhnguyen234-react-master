@@ -13,6 +13,7 @@ import {
   LOADING_IMAGE_URL,
   DEFAULT_PRODUCT_URL,
   INTERNAL_URLS,
+  CONFIG,
 } from '../../lib/const';
 
 const ProductListing = () => {
@@ -24,13 +25,13 @@ const ProductListing = () => {
   React.useEffect(() => {
     dispatch(
       requestApiAction(
-        'http://localhost:7003/product',
+        `${CONFIG.API_DOMAIN}product`,
         actionType.fetchProductList,
       ),
     );
     dispatch(
       requestApiAction(
-        'http://localhost:7003/product/flash-sale?time=1601448417&limit=12&src=db',
+        `${CONFIG.API_DOMAIN}product/flash-sale?time=1601448417&limit=12&src=db`,
         actionType.fetchProductFlashSale,
       ),
     );

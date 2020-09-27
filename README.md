@@ -9,7 +9,7 @@
   Fix: *https://github.com/DefinitelyTyped/DefinitelyTyped/issues/5128* 
   ```
   // tsconfig.json
-  
+  -----------------  
     {
       "compilerOptions": {
         "esModuleInterop": true,
@@ -22,7 +22,7 @@
   Fix: *https://github.com/webpack/webpack/issues/7172*
   ```
   // webpack.config.js
-  
+  -----------------
     devtool: 'inline-source-map',
     plugins: [
       new webpack.SourceMapDevToolPlugin({
@@ -31,4 +31,19 @@
         test: /\.ts($|\?)/i,
       })
     ]
+  ```
+- Load .env Webpack: *https://medium.com/@trekinbami/using-environment-variables-in-react-6b0a99d83cf5*
+  ```
+  // webpack.config.js
+  -----------------
+  const dotenv = require('dotenv');
+  const env = dotenv.config().parsed;
+  const envKeys = Object.keys(env).reduce((prev, next) => {
+    prev[`process.env.${next}`] = JSON.stringify(env[next]);
+    return prev;
+  }, {});
+  -----------------
+  plugins: [
+      new webpack.DefinePlugin(envKeys),
+  ]
   ```
