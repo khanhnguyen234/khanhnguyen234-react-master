@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production",
-    "start": "http-server dist"
+    "start": "http-server dist",
+    "deploy": "yarn build && dotenv cross-var aws s3 sync dist s3://%S3_BUCKET_NAME%/ --acl=public-read"
   },
   "author": "khanhnguyen234",
   "license": "ISC",
@@ -14,7 +15,9 @@
     "@khanhnguyen234/react-common": "0.0.5",
     "@khanhnguyen234/react-components": "0.0.1",
     "classnames": "^2.2.6",
+    "cross-var": "^1.1.0",
     "date-fns": "^2.16.1",
+    "dotenv-cli": "^4.0.0",
     "path-to-regexp": "3.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

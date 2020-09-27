@@ -2,6 +2,7 @@
 - https://medium.com/@atingenkay/webpack-4-react-with-typescript-996eb78ff348 
 - https://webpack.js.org/concepts/loaders/
 - https://webpack.js.org/guides/progressive-web-application/#we-dont-work-offline-now
+- Use .env in CLI: https://medium.com/@arrayknight/how-to-use-env-variables-in-package-json-509b9b663867
 
 
 #### Issue Config
