@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -30,15 +31,28 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
+              sourceMap: true,
             },
           }, // to convert the resulting CSS to Javascript to be bundled (modules:true to rename CSS classes in output to cryptic identifiers, except if wrapped in a :global(...) pseudo class)
-          { loader: 'sass-loader' }, // to convert SASS to CSS
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          }, // to convert SASS to CSS
           // NOTE: The first build after adding/removing/renaming CSS classes fails, since the newly generated .d.ts typescript module is picked up only later
         ],
       },
     ],
   },
+  devtool: 'inline-source-map',
   plugins: [
+    // https://github.com/webpack/webpack/issues/7172
+    new webpack.SourceMapDevToolPlugin({
+      filename: null,
+      exclude: [/node_modules/],
+      test: /\.ts($|\?)/i,
+    }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
