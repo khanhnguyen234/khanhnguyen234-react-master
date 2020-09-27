@@ -8,9 +8,12 @@ import { requestApiAction, STATUS } from '../../utils/fetcher';
 import { actionType } from './dataSrc';
 import useProductListing from './hooks/use-product-listing';
 import useProductFlashSale from './hooks/use-product-flash-sale';
-import { DEFAULT_PRODUCT_URL, INTERNAL_URLS } from './const';
 import { BackdropVariant } from '../../../../khanhnguyen234-react-components/src/components/Loading';
-import { LOADING_IMAGE_URL } from '../../lib/const';
+import {
+  LOADING_IMAGE_URL,
+  DEFAULT_PRODUCT_URL,
+  INTERNAL_URLS,
+} from '../../lib/const';
 
 const ProductListing = () => {
   const history = useHistory();

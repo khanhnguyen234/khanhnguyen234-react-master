@@ -26,7 +26,6 @@ export function requestApiAction(endpoint, actionType, options: any = {}) {
       .catch((error) => {
         dispatch({
           type: actionType,
-          data: error,
           success: false,
           status: STATUS.isError,
           error,
