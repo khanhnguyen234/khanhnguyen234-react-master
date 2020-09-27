@@ -1,4 +1,4 @@
-import * as pathToRegexp from "path-to-regexp";
+import pathToRegexp from 'path-to-regexp';
 
 const cache: {
   [x: string]: {

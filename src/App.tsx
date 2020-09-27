@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Button } from '@material-ui/core';
 
 import { scrollToOffset } from '@khanhnguyen234/react-common';
@@ -10,7 +10,7 @@ import { Grid, Title, Box } from '@khanhnguyen234/react-components';
 import useHistory from '@khanhnguyen234/react-master/src/pwa/hooks/useHistory';
 import useStorage from '@khanhnguyen234/react-master/src/pwa/hooks/useStorage';
 
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 
 const App = ({ routeComponent }) => {
   const history = useHistory();
