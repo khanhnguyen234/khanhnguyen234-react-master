@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Grid, Loading } from '@khanhnguyen234/react-components';
-import useRoute from '@khanhnguyen234/react-master/src/pwa/hooks/useRoute';
+import useRoute from '../../pwa/hooks/useRoute';
 import ProductForm from './components/product-form';
 import useProduct from './hooks/use-product';
 import { requestApiAction, STATUS } from '../../utils/fetcher';

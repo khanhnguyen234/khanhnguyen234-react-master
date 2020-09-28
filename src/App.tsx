@@ -7,8 +7,8 @@ import {
   LOCAL_STORAGE,
 } from '@khanhnguyen234/react-common/src/storages';
 import { Grid, Title, Box } from '@khanhnguyen234/react-components';
-import useHistory from '@khanhnguyen234/react-master/src/pwa/hooks/useHistory';
-import useStorage from '@khanhnguyen234/react-master/src/pwa/hooks/useStorage';
+import useHistory from './pwa/hooks/useHistory';
+import useStorage from './pwa/hooks/useStorage';
 
 import styles from './styles.scss';
 

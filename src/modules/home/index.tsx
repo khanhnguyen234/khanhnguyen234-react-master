@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Box, Grid, Loading } from '@khanhnguyen234/react-components';
-import useHistory from '@khanhnguyen234/react-master/src/pwa/hooks/useHistory';
+import useHistory from '../../pwa/hooks/useHistory';
 import ProductCard from '../../components/product-card';
 import * as styles from './styles.scss';
 import { useDispatch } from 'react-redux';
