@@ -5,7 +5,10 @@
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
-    <title>TypeScript + React</title> 
+    <title>TypeScript + React</title>
+    <% for (script of htmlWebpackPlugin.options.headScripts) { %>
+    <script src="<%= script %>"></script>
+    <% } %>
   </head> 
   <body> 
     <div id="root"> 

@@ -4,13 +4,20 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { ModuleFederationPlugin } = require("webpack").container;
+const packageName = require("./package.json").name;
 
-// https://medium.com/@trekinbami/using-environment-variables-in-react-6b0a99d83cf5
-const env = dotenv.config().parsed;
-const envKeys = Object.keys(env || {}).reduce((prev, next) => {
-  prev[`process.env.${next}`] = JSON.stringify(env[next]);
-  return prev;
+function removeChar(str) {
+  return str.replace(/[^a-zA-Z0-9]/g, "");
+}
+const externalPackages = ["@khanhnguyen/react-app1"];
+const remotes = externalPackages.reduce(function (remotes, package) {
+  remotes[package] = removeChar(package);
+  return remotes;
 }, {});
+const srcScripts = [
+  "https://module-federation-react-5xsg.s3.amazonaws.com/app1/remoteEntry.js",
+];
 
 module.exports = {
   entry: './src/index.tsx',
@@ -20,7 +27,6 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-
     // Fix issue: GET http://localhost:8080/admin/product/main.bundle.js net::ERR_ABORTED 404 (Not Found)
     // If access http://localhost:8080/admin/product/create
     publicPath: '/',
@@ -28,8 +34,21 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /bootstrap\.tsx$/,
+        loader: "bundle-loader",
+        options: {
+          lazy: true,
+        },
+      },
+      {
         test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader',
+        loader: "babel-loader",
+        options: {
+          presets: [
+            "@babel/preset-react",
+            "@babel/preset-typescript",
+          ],
+        },
       },
       {
         test: /\.scss$/,
@@ -65,8 +84,11 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      headScripts: srcScripts,
     }),
-    new webpack.DefinePlugin(envKeys),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(dotenv.config().parsed)
+    }),
     new CleanWebpackPlugin(),
     // new WorkboxPlugin.GenerateSW({
     //   // these options encourage the ServiceWorkers to get in there fast
@@ -74,6 +96,12 @@ module.exports = {
     //     clientsClaim: true,
     //     skipWaiting: true,
     //   }),
+    new ModuleFederationPlugin({
+      name: packageName,
+      library: { type: "var", name: "app2" },
+      remotes: remotes,
+      // shared: ["react", "react-dom"],
+    }),
   ],
   devServer: {
     historyApiFallback: true,

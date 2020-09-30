@@ -11,6 +11,8 @@ import useHistory from './pwa/hooks/useHistory';
 import useStorage from './pwa/hooks/useStorage';
 
 import styles from './styles.scss';
+// @ts-ignore
+const Header = React.lazy(() => import("@khanhnguyen/react-app1/Header"));
 
 const App = ({ routeComponent }) => {
   const history = useHistory();
@@ -28,6 +30,9 @@ const App = ({ routeComponent }) => {
 
   return (
     <div className={styles.rootApp}>
+      <React.Suspense fallback="Loading header">
+        <Header>Hello this is App 2</Header>
+      </React.Suspense>
       <Grid item container spacing={4}>
         <Grid item>
           <Grid item container alignItem="center" spacing={2}>
