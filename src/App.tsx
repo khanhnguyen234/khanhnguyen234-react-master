@@ -12,7 +12,25 @@ import useStorage from './pwa/hooks/useStorage';
 
 import styles from './styles.scss';
 // @ts-ignore
-const Header = React.lazy(() => import("@khanhnguyen/react-app1/Header"));
+const StatelessModule = React.lazy(
+  () => import('@khanhnguyen234/micro-react-admin/stateless-module'),
+);
+const MTitle = React.lazy(
+  () => import('@khanhnguyen234/micro-react-components/Title'),
+);
+
+const Micro = () => {
+  return (
+    <>
+      <React.Suspense fallback="Loading Micro Components">
+        <MTitle>@khanhnguyen234/micro-react-components/Title</MTitle>
+      </React.Suspense>
+      <React.Suspense fallback="Loading Micro Admin">
+        <StatelessModule />
+      </React.Suspense>
+    </>
+  );
+};
 
 const App = ({ routeComponent }) => {
   const history = useHistory();
@@ -30,9 +48,6 @@ const App = ({ routeComponent }) => {
 
   return (
     <div className={styles.rootApp}>
-      <React.Suspense fallback="Loading header">
-        <Header>Hello this is App 2</Header>
-      </React.Suspense>
       <Grid item container spacing={4}>
         <Grid item>
           <Grid item container alignItem="center" spacing={2}>
@@ -63,6 +78,7 @@ const App = ({ routeComponent }) => {
             </Grid>
           </Grid>
         </Grid>
+        <Grid item><Micro/></Grid>
         <Grid item>{routeComponent}</Grid>
       </Grid>
     </div>

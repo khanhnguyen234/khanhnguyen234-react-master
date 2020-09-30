@@ -7,7 +7,7 @@
     "dev": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production",
     "start": "http-server dist",
-    "deploy": "yarn build && dotenv cross-var aws s3 sync dist s3://%S3_BUCKET_NAME%/ --acl=public-read"
+    "deploy": "yarn build && cp .env dist/.env && dotenv cross-var aws s3 sync dist s3://%S3_BUCKET_NAME%/%S3_BUCKET_KEY%/ --acl=public-read"
   },
   "author": "khanhnguyen234",
   "license": "ISC",
@@ -31,6 +31,7 @@
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
     "@babel/preset-typescript": "^7.10.4",
+    "@material-ui/core": "^4.11.0",
     "@types/classnames": "^2.2.10",
     "@types/history": "^4.7.6",
     "@types/node": "7.0.7",
