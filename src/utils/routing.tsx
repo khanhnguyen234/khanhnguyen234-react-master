@@ -80,3 +80,5 @@ export function Router({ routing, history, childrenProps }: RouterProps) {
     </ReactRouteContext.Provider>
   );
 }
+
+export default Router
