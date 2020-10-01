@@ -986,20 +986,6 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@khanhnguyen234/react-common@0.0.6":
-  version "0.0.6"
-  resolved "https://npm.pkg.github.com/download/@khanhnguyen234/react-common/0.0.6/6f34a684eb7078930bf2d71d6e9ecaf0fafa9171e8d9062c4e96a4a8f9c6a3ba#05b85c24d9011790ec97123fb4f3076a1fde1fd2"
-  integrity sha512-s6xdRj+MTjIPvIC6gAteVpDIQNmNXrqwHFJoajoAulA3dN+UpXJA+4UUulRPo/W5wJA5+zTKM9MjImNvTbW3aA==
-
-"@khanhnguyen234/react-components@0.0.2":
-  version "0.0.2"
-  resolved "https://npm.pkg.github.com/download/@khanhnguyen234/react-components/0.0.2/243973cbfae2beb8aaffbadbeb7c14fee54604641fc13e554a713a99f2a9fdc1#f438a73e45ac48d249027439435c2dd2a28d8f55"
-  integrity sha512-P/WzkxApQOTRtxS50iZdkunW38fqI7xmJma3Qcinzf1aByQrIOIS2NosI6/qBXnpy3/R0HzTDFQIfLGErUcVfA==
-  dependencies:
-    "@material-ui/core" "^4.11.0"
-    react "^16.13.1"
-    react-dom "^16.13.1"
-
 "@material-ui/core@^4.11.0":
   version "4.11.0"
   resolved "https://registry.npmjs.org/@material-ui/core/-/core-4.11.0.tgz#b69b26e4553c9e53f2bfaf1053e216a0af9be15a"

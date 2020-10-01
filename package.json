@@ -12,8 +12,9 @@
   "author": "khanhnguyen234",
   "license": "ISC",
   "dependencies": {
-    "@khanhnguyen234/react-common": "0.0.6",
-    "@khanhnguyen234/react-components": "0.0.2",
+    "@khanhnguyen234/react-admin": "git+https://github.com/khanhnguyen234/khanhnguyen234-react-admin.git#master",
+    "@khanhnguyen234/react-common": "git+https://github.com/khanhnguyen234/khanhnguyen234-react-common.git#master",
+    "@khanhnguyen234/react-components": "git+https://github.com/khanhnguyen234/khanhnguyen234-react-components.git#master",
     "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
     "path-to-regexp": "3.0.0",
