@@ -11,26 +11,6 @@ import useHistory from './pwa/hooks/useHistory';
 import useStorage from './pwa/hooks/useStorage';
 
 import styles from './styles.scss';
-// @ts-ignore
-const StatelessModule = React.lazy(
-  () => import('@khanhnguyen234/micro-react-admin/stateless-module'),
-);
-const MTitle = React.lazy(
-  () => import('@khanhnguyen234/micro-react-components/Title'),
-);
-
-const Micro = () => {
-  return (
-    <>
-      <React.Suspense fallback="Loading Micro Components">
-        <MTitle>@khanhnguyen234/micro-react-components/Title</MTitle>
-      </React.Suspense>
-      <React.Suspense fallback="Loading Micro Admin">
-        <StatelessModule />
-      </React.Suspense>
-    </>
-  );
-};
 
 const App = ({ routeComponent }) => {
   const history = useHistory();
@@ -78,7 +58,6 @@ const App = ({ routeComponent }) => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item><Micro/></Grid>
         <Grid item>{routeComponent}</Grid>
       </Grid>
     </div>

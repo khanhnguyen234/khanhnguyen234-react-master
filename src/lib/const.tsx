@@ -5,6 +5,7 @@ export const CONFIG = {
 export const INTERNAL_URLS = {
   adminProductDetail: '/admin/product/:id',
   adminProductCreate: '/admin/product/create',
+  productDetail: '/product/:name',
   home: '/',
 };
 

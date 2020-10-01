@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { Box, Grid, Loading } from '@khanhnguyen234/react-components';
+import {
+  Box,
+  Grid,
+  Loading,
+  BackdropVariant,
+} from '@khanhnguyen234/react-components';
 import useHistory from '../../pwa/hooks/useHistory';
 import ProductCard from '../../components/product-card';
 import * as styles from './styles.scss';
@@ -8,7 +13,6 @@ import { requestApiAction, STATUS } from '../../utils/fetcher';
 import { actionType } from './dataSrc';
 import useProductListing from './hooks/use-product-listing';
 import useProductFlashSale from './hooks/use-product-flash-sale';
-import { BackdropVariant } from '../../../../khanhnguyen234-react-components/src/components/Loading';
 import {
   LOADING_IMAGE_URL,
   DEFAULT_PRODUCT_URL,
@@ -37,7 +41,11 @@ const ProductListing = () => {
     );
   }, []);
 
-  const handleClickCard = (id) => {
+  const handleClickCard = (e, name) => {
+    history.push(`${INTERNAL_URLS.productDetail.replace(':name', name)}`);
+  };
+
+  const handleClickDot = (e, id) => {
     history.push(`${INTERNAL_URLS.adminProductDetail.replace(':id', id)}`);
   };
 
@@ -56,17 +64,13 @@ const ProductListing = () => {
         </Box>
         <Grid item container spacing={2}>
           {productFlashSale.map((item) => (
-            <Grid
-              item
-              xs={2}
-              key={item.id}
-              className={styles.card}
-              onClick={() => handleClickCard(item.id)}
-            >
+            <Grid item xs={2} key={item.id} className={styles.card}>
               <ProductCard
                 image={item.image_url || DEFAULT_PRODUCT_URL}
                 name={item.name}
                 price={item.price}
+                onClickCard={(e) => handleClickCard(e, item.name)}
+                onClickDot={(e) => handleClickDot(e, item.id)}
               />
             </Grid>
           ))}
@@ -82,17 +86,13 @@ const ProductListing = () => {
         </Box>
         <Grid item container spacing={2}>
           {productListing.map((item) => (
-            <Grid
-              item
-              xs={2}
-              key={item.id}
-              className={styles.card}
-              onClick={() => handleClickCard(item.id)}
-            >
+            <Grid item xs={2} key={item.id} className={styles.card}>
               <ProductCard
                 image={item.image_url || DEFAULT_PRODUCT_URL}
                 name={item.name}
                 price={item.price}
+                onClickCard={(e) => handleClickCard(e, item.name)}
+                onClickDot={(e) => handleClickDot(e, item.id)}
               />
             </Grid>
           ))}

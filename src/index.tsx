@@ -2,6 +2,7 @@ import * as React from 'react';
 import createClientApp from './create-client-app';
 import Home from './modules/home';
 import AdminProductCreate from './modules/admin-product';
+import ProductDetail from './modules/product-detail';
 
 import ProductListingData from './modules/home/dataSrc';
 import AdminProductCreateData from './modules/admin-product/dataSrc';
@@ -15,6 +16,10 @@ const ROUTES = [
   {
     path: INTERNAL_URLS.adminProductDetail,
     component: AdminProductCreate,
+  },
+  {
+    path: INTERNAL_URLS.productDetail,
+    component: ProductDetail,
   },
   {
     path: INTERNAL_URLS.home,

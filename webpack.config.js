@@ -86,6 +86,13 @@ module.exports = (env, options) => {
             // NOTE: The first build after adding/removing/renaming CSS classes fails, since the newly generated .d.ts typescript module is picked up only later
           ],
         },
+        {
+          test: /\.icon\.svg$/,
+          loader: '@svgr/webpack',
+          options: {
+            icon: true,
+          },
+        },
       ],
     },
     devtool: 'inline-source-map',
