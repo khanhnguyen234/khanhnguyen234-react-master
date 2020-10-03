@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { scrollToOffset } from '@khanhnguyen234/react-common';
 import {
   COOKIE_STORAGE,
@@ -31,24 +31,24 @@ const App = ({ routeComponent }) => {
         <Grid item>
           <Grid item container alignItem="center" spacing={2}>
             <Grid item xs="auto">
-              <button
+              <Button
                 variant="contained"
                 color="secondary"
                 size="large"
                 onClick={goHome}
               >
                 Home
-              </button>
+              </Button>
             </Grid>
             <Grid item xs="auto">
-              <button
+              <Button
                 variant="contained"
                 color="secondary"
                 size="large"
                 onClick={goCreateProduct}
               >
                 Create
-              </button>
+              </Button>
             </Grid>
             <Grid item xs={true}>
               <Title className={styles.title}>

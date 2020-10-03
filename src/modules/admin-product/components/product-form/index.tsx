@@ -1,10 +1,10 @@
 import * as React from 'react';
-// import {
-//   Button,
-//   TextField,
-//   FormControlLabel,
-//   Checkbox,
-// } from '@material-ui/core';
+import {
+  Button,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+} from '@material-ui/core';
 import _isEmpty from 'lodash-es/isEmpty';
 import { Grid, Image } from '@khanhnguyen234/react-components';
 import { DEFAULT_PRODUCT, FORM_PROPS } from '../../const';
@@ -68,80 +68,80 @@ const AdminProductCreate = ({ product, errMes, handleSubmitForm }) => {
     <Grid container spacing={2}>
       {!!errMes && <Grid item>{errMes}</Grid>}
       <Grid item xs={6}>
-        {/*<Button*/}
-        {/*  fullWidth*/}
-        {/*  variant="contained"*/}
-        {/*  color="primary"*/}
-        {/*  size="large"*/}
-        {/*  type="submit"*/}
-        {/*  onClick={() => handleSubmitForm(form)}*/}
-        {/*>*/}
-        {/*  CREATE*/}
-        {/*</Button>*/}
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          size="large"
+          type="submit"
+          onClick={() => handleSubmitForm(form)}
+        >
+          CREATE
+        </Button>
       </Grid>
       <Grid item md={6} container spacing={2}>
         <Grid item xs={4}>
-          {/*<FormControlLabel*/}
-          {/*  control={*/}
-          {/*    <Checkbox*/}
-          {/*      checked={!!form[FORM_PROPS.flash_sale]}*/}
-          {/*      color="primary"*/}
-          {/*      onChange={handleChangeFlashSale}*/}
-          {/*    />*/}
-          {/*  }*/}
-          {/*  labelPlacement="start"*/}
-          {/*  label={FORM_PROPS.flash_sale}*/}
-          {/*/>*/}
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={!!form[FORM_PROPS.flash_sale]}
+                color="primary"
+                onChange={handleChangeFlashSale}
+              />
+            }
+            labelPlacement="start"
+            label={FORM_PROPS.flash_sale}
+          />
         </Grid>
         <Grid item xs={4}>
-          {/*<TextField*/}
-          {/*  type="datetime-local"*/}
-          {/*  {...getProps(form, FORM_PROPS.flash_sale_unix_start)}*/}
-          {/*  onChange={(e) => handleChange(FORM_PROPS.flash_sale_unix_start, e)}*/}
-          {/*/>*/}
+          <TextField
+            type="datetime-local"
+            {...getProps(form, FORM_PROPS.flash_sale_unix_start)}
+            onChange={(e) => handleChange(FORM_PROPS.flash_sale_unix_start, e)}
+          />
         </Grid>
         <Grid item xs={4}>
-          {/*<TextField*/}
-          {/*  type="datetime-local"*/}
-          {/*  {...getProps(form, FORM_PROPS.flash_sale_unix_end)}*/}
-          {/*  onChange={(e) => handleChange(FORM_PROPS.flash_sale_unix_start, e)}*/}
-          {/*/>*/}
+          <TextField
+            type="datetime-local"
+            {...getProps(form, FORM_PROPS.flash_sale_unix_end)}
+            onChange={(e) => handleChange(FORM_PROPS.flash_sale_unix_start, e)}
+          />
         </Grid>
       </Grid>
       <Grid item xs={4}>
-        {/*<TextField*/}
-        {/*  type="text"*/}
-        {/*  {...getProps(form, FORM_PROPS.name)}*/}
-        {/*  onChange={(e) => handleChange(FORM_PROPS.name, e)}*/}
-        {/*/>*/}
+        <TextField
+          type="text"
+          {...getProps(form, FORM_PROPS.name)}
+          onChange={(e) => handleChange(FORM_PROPS.name, e)}
+        />
       </Grid>
       <Grid item xs={4}>
-        {/*<TextField*/}
-        {/*  type="text"*/}
-        {/*  {...getProps(form, FORM_PROPS.description)}*/}
-        {/*  onChange={(e) => handleChange(FORM_PROPS.description, e)}*/}
-        {/*/>*/}
+        <TextField
+          type="text"
+          {...getProps(form, FORM_PROPS.description)}
+          onChange={(e) => handleChange(FORM_PROPS.description, e)}
+        />
       </Grid>
       <Grid item xs={4}>
-        {/*<TextField*/}
-        {/*  type="number"*/}
-        {/*  {...getProps(form, FORM_PROPS.price)}*/}
-        {/*  onChange={(e) => handleChange(FORM_PROPS.price, e)}*/}
-        {/*/>*/}
+        <TextField
+          type="number"
+          {...getProps(form, FORM_PROPS.price)}
+          onChange={(e) => handleChange(FORM_PROPS.price, e)}
+        />
       </Grid>
       <Grid item xs={6}>
-        {/*<TextField*/}
-        {/*  type="text"*/}
-        {/*  {...getProps(form, FORM_PROPS.image_url)}*/}
-        {/*  onChange={(e) => handleChange(FORM_PROPS.image_url, e)}*/}
-        {/*/>*/}
+        <TextField
+          type="text"
+          {...getProps(form, FORM_PROPS.image_url)}
+          onChange={(e) => handleChange(FORM_PROPS.image_url, e)}
+        />
       </Grid>
       <Grid item xs={6}>
-        {/*<TextField*/}
-        {/*  type="text"*/}
-        {/*  {...getProps(form, FORM_PROPS.video_url)}*/}
-        {/*  onChange={(e) => handleChange(FORM_PROPS.video_url, e)}*/}
-        {/*/>*/}
+        <TextField
+          type="text"
+          {...getProps(form, FORM_PROPS.video_url)}
+          onChange={(e) => handleChange(FORM_PROPS.video_url, e)}
+        />
       </Grid>
       <Grid item container className={styles.mediaBlock} spacing={4}>
         <Grid item xs={6}>
