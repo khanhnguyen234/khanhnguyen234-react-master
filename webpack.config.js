@@ -106,13 +106,13 @@ module.exports = (env, options) => {
                 modules: {
                   localIdentName: '[local]_[hash:base64:5]',
                 },
-                sourceMap: true,
+                // sourceMap: true,
               },
             }, // to convert the resulting CSS to Javascript to be bundled (modules:true to rename CSS classes in output to cryptic identifiers, except if wrapped in a :global(...) pseudo class)
             {
               loader: 'sass-loader',
               options: {
-                sourceMap: true,
+                // sourceMap: true,
               },
             }, // to convert SASS to CSS
             // NOTE: The first build after adding/removing/renaming CSS classes fails, since the newly generated .d.ts typescript module is picked up only later
@@ -127,14 +127,14 @@ module.exports = (env, options) => {
         },
       ],
     },
-    devtool: 'inline-source-map',
+    // devtool: 'inline-source-map',
     plugins: [
       // https://github.com/webpack/webpack/issues/7172
-      new webpack.SourceMapDevToolPlugin({
-        filename: null,
-        exclude: [/node_modules/],
-        test: /\.ts($|\?)/i,
-      }),
+      // new webpack.SourceMapDevToolPlugin({
+      //   filename: null,
+      //   exclude: [/node_modules/],
+      //   test: /\.ts($|\?)/i,
+      // }),
       new HtmlWebpackPlugin({
         template: './src/index.html',
         headScripts: srcScripts,
