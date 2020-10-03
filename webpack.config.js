@@ -44,9 +44,21 @@ module.exports = (env, options) => {
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
+      chunkFilename: '[name].bundle.js',
       // Fix issue: GET http://localhost:8080/admin/product/main.bundle.js net::ERR_ABORTED 404 (Not Found)
       // If access http://localhost:8080/admin/product/create
-      publicPath,
+      publicPath: '/',
+    },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'node_modules',
+          },
+        },
+      },
     },
     module: {
       rules: [
