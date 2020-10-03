@@ -52,11 +52,31 @@ module.exports = (env, options) => {
     optimization: {
       splitChunks: {
         chunks: 'all',
+        // cacheGroups: {
+        //   vendors: {
+        //     test: /[\\/]node_modules[\\/]/,
+        //     name: 'node_modules',
+        //   },
+        // },
         cacheGroups: {
-          vendors: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'node_modules',
+          common: {
+            test: /[\/]node_modules[\/](react|react-dom|react-redux|redux)[\/]/,
+            name: 'react',
+            chunks: 'all',
+            priority: 99,
           },
+          component: {
+            test: /[\/]node_modules[\/]@khanhnguyen234[\/]react-components[\/]/,
+            name: 'khanhnguyen234-components',
+            chunks: 'all',
+            priority: 98,
+          },
+          'vendors-async': {
+            reuseExistingChunk: true,
+            chunks: 'async',
+            priority: -10,
+          },
+          default: { priority: -30 },
         },
       },
     },
