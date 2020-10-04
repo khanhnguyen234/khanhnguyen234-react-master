@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production && ls -lh dist",
-    "start": "http-server dist",
+    "start": "serve -l 8080 -s dist",
     "deploy": "cp .env dist/.env && dotenv cross-var aws s3 sync dist s3://%S3_BUCKET_NAME%/%S3_BUCKET_KEY%/ --acl=public-read"
   },
   "author": "khanhnguyen234",
@@ -51,10 +51,10 @@
     "dotenv": "^8.2.0",
     "dotenv-cli": "^4.0.0",
     "html-webpack-plugin": "^4.3.0",
-    "http-server": "^0.12.3",
     "lodash-es": "^4.17.15",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
+    "serve": "^11.3.2",
     "style-loader": "^1.2.1",
     "typescript": "^3.9.3",
     "webpack": "5.0.0-beta.23",
