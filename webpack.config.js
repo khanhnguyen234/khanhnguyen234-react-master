@@ -30,11 +30,28 @@ const remotes = externalPackages.reduce(function (remotes, package) {
   return remotes;
 }, {});
 
+const CONFIG_MODE = {
+  development: {
+    sourceMap: true,
+    publicPath: '/',
+    devtool: 'inline-source-map',
+    plugins: [
+      new webpack.SourceMapDevToolPlugin({
+        filename: null,
+        exclude: [/node_modules/],
+        test: /\.ts($|\?)/i,
+      }),
+    ]
+  },
+  production: {
+    sourceMap: false,
+    publicPath: `https://${process.env.S3_BUCKET_NAME}.s3.amazonaws.com/${process.env.S3_BUCKET_KEY}/`,
+    plugins: [],
+  }
+}
+
 module.exports = (env, options) => {
-  const publicPath =
-    options.mode === 'development'
-      ? '/'
-      : `https://${process.env.S3_BUCKET_NAME}.s3.amazonaws.com/${process.env.S3_BUCKET_KEY}/`;
+  const mode = options.mode;
 
   return {
     entry: './src/index.tsx',
@@ -45,21 +62,13 @@ module.exports = (env, options) => {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
       chunkFilename: '[name].bundle.js',
-      // Fix issue: GET http://localhost:8080/admin/product/main.bundle.js net::ERR_ABORTED 404 (Not Found)
-      // If access http://localhost:8080/admin/product/create
-      publicPath: '/',
+      publicPath: CONFIG_MODE[mode].publicPath,
     },
     optimization: {
       splitChunks: {
         chunks: 'all',
-        // cacheGroups: {
-        //   vendors: {
-        //     test: /[\\/]node_modules[\\/]/,
-        //     name: 'node_modules',
-        //   },
-        // },
         cacheGroups: {
-          common: {
+          react: {
             test: /[\/]node_modules[\/](react|react-dom|react-redux|redux)[\/]/,
             name: 'react',
             chunks: 'all',
@@ -99,23 +108,22 @@ module.exports = (env, options) => {
         {
           test: /\.scss$/,
           use: [
-            { loader: 'style-loader' }, // to inject the result into the DOM as a style block
+            { loader: 'style-loader' },
             {
               loader: 'css-loader',
               options: {
                 modules: {
                   localIdentName: '[local]_[hash:base64:5]',
                 },
-                // sourceMap: true,
+                sourceMap: CONFIG_MODE[mode].sourceMap,
               },
-            }, // to convert the resulting CSS to Javascript to be bundled (modules:true to rename CSS classes in output to cryptic identifiers, except if wrapped in a :global(...) pseudo class)
+            },
             {
               loader: 'sass-loader',
               options: {
-                // sourceMap: true,
+                sourceMap: CONFIG_MODE[mode].sourceMap,
               },
-            }, // to convert SASS to CSS
-            // NOTE: The first build after adding/removing/renaming CSS classes fails, since the newly generated .d.ts typescript module is picked up only later
+            },
           ],
         },
         {
@@ -127,14 +135,8 @@ module.exports = (env, options) => {
         },
       ],
     },
-    // devtool: 'inline-source-map',
+    devtool: CONFIG_MODE[mode].devtool,
     plugins: [
-      // https://github.com/webpack/webpack/issues/7172
-      // new webpack.SourceMapDevToolPlugin({
-      //   filename: null,
-      //   exclude: [/node_modules/],
-      //   test: /\.ts($|\?)/i,
-      // }),
       new HtmlWebpackPlugin({
         template: './src/index.html',
         headScripts: srcScripts,
@@ -144,18 +146,16 @@ module.exports = (env, options) => {
       }),
       new CleanWebpackPlugin(),
       // new WorkboxPlugin.GenerateSW({
-      //   // these options encourage the ServiceWorkers to get in there fast
-      //     // and not allow any straggling "old" SWs to hang around
-      //     clientsClaim: true,
-      //     skipWaiting: true,
-      //   }),
+      //   clientsClaim: true,
+      //   skipWaiting: true,
+      // }),
       new ModuleFederationPlugin({
         name: packageName,
         library: { type: 'var', name: 'app2' },
         remotes: remotes,
         // shared: ["react", "react-dom"],
       }),
-    ],
+    ].concat(CONFIG_MODE[mode].plugins),
     devServer: {
       historyApiFallback: true,
     },
