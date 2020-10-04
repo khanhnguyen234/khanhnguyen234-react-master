@@ -1,8 +1,8 @@
 import * as React from 'react';
 import createClientApp from './create-client-app';
-import Home from './modules/home';
-import AdminProductCreate from './modules/admin-product';
-import ProductDetail from './modules/product-detail';
+import Home from './modules/home/home.module';
+import AdminProductCreate from './modules/admin-product/admin-product.module';
+import ProductDetail from './modules/product-detail/product-detail.module';
 
 import ProductListingData from './modules/home/dataSrc';
 import AdminProductCreateData from './modules/admin-product/dataSrc';

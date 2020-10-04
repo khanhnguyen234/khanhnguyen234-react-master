@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --mode development --hot",
-    "build": "webpack --mode production",
+    "build": "webpack --mode production && ls -lh dist",
     "start": "http-server dist",
-    "deploy": "yarn build && cp .env dist/.env && dotenv cross-var aws s3 sync dist s3://%S3_BUCKET_NAME%/%S3_BUCKET_KEY%/ --acl=public-read"
+    "deploy": "cp .env dist/.env && dotenv cross-var aws s3 sync dist s3://%S3_BUCKET_NAME%/%S3_BUCKET_KEY%/ --acl=public-read"
   },
   "author": "khanhnguyen234",
   "license": "ISC",

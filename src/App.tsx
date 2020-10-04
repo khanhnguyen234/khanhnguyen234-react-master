@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
-
 import { scrollToOffset } from '@khanhnguyen234/react-common';
 import {
   COOKIE_STORAGE,
