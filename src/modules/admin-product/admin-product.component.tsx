@@ -8,6 +8,7 @@ import { actionType } from './dataSrc';
 import { useDispatch } from 'react-redux';
 import { FORM_PROPS } from './const';
 import { datetimeLocalToUnix } from '../../utils/date';
+import { CONFIG } from '../../lib/const';
 
 const AdminProductCreate = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const AdminProductCreate = () => {
     if (id) {
       dispatch(
         requestApiAction(
-          `http://localhost:7003/product/detail/${id}`,
+          `${CONFIG.API_DOMAIN}product/detail/${id}`,
           actionType.fetchProduct,
         ),
       );
@@ -50,7 +51,7 @@ const AdminProductCreate = () => {
 
     dispatch(
       requestApiAction(
-        'http://localhost:7003/product',
+        `${CONFIG.API_DOMAIN}product`,
         actionType.createProduct,
         {
           method: 'POST',

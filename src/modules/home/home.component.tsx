@@ -64,7 +64,14 @@ const ProductListing = () => {
         </Box>
         <Grid item container spacing={2}>
           {productFlashSale.map((item) => (
-            <Grid item xs={2} key={item.id} className={styles.card}>
+            <Grid
+              item
+              xs={6}
+              sm={4}
+              md={2}
+              key={item._id}
+              className={styles.card}
+            >
               <ProductCard
                 image={item.image_url || DEFAULT_PRODUCT_URL}
                 name={item.name}
@@ -86,7 +93,14 @@ const ProductListing = () => {
         </Box>
         <Grid item container spacing={2}>
           {productListing.map((item) => (
-            <Grid item xs={2} key={item.id} className={styles.card}>
+            <Grid
+              item
+              xs={6}
+              sm={4}
+              md={2}
+              key={item._id}
+              className={styles.card}
+            >
               <ProductCard
                 image={item.image_url || DEFAULT_PRODUCT_URL}
                 name={item.name}
