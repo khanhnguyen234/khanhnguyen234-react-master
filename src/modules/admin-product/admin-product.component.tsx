@@ -36,7 +36,7 @@ const AdminProductCreate = () => {
     if (!id) {
       setProduct(undefined);
     }
-  }, [pathname, product]);
+  }, [pathname]);
 
   const handleSubmit = (data) => {
     setProduct(data);

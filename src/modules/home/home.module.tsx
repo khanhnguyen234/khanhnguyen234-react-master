@@ -1,13 +1,33 @@
-import React from 'react';
-import MicroLoading from '../../components/micro-loading';
-const LazyComponent = React.lazy(() => import('./home.component'));
+import { PWAModule } from '../../pwa/pwa-module';
+import * as React from 'react';
+import _data from './dataSrc';
+import _s2 from './home.component';
 
-export default () => {
-  return (
-    <>
-      <React.Suspense fallback={<MicroLoading text={'Loading Lazy Admin'} />}>
-        <LazyComponent />
-      </React.Suspense>
-    </>
-  );
-};
+function Placeholder() {
+  return <div>HomeModule placeholder</div>;
+}
+
+const HomeModule = new PWAModule({
+  name: 'HomeModule',
+  placeholder: Placeholder,
+  factory: async (ctx) => {
+    const [_data, _s2] = (
+      await Promise.allSettled([
+        import('./dataSrc'),
+        import('./home.component'),
+      ])
+    ).map((pwaModule) => {
+      pwaModule.status === 'rejected' && console.error(pwaModule.reason);
+      return pwaModule.status === 'fulfilled' ? pwaModule.value.default : null;
+    });
+    return {
+      layout: _s2,
+      named: {},
+      routing: [],
+      subs: [],
+      data: [_data].filter(Boolean),
+    };
+  },
+});
+
+export default HomeModule;

@@ -6,12 +6,12 @@ import {
   LOCAL_STORAGE,
 } from '@khanhnguyen234/react-common/src/storages';
 import { Grid, Title, Box } from '@khanhnguyen234/react-components';
-import useHistory from './pwa/hooks/useHistory';
-import useStorage from './pwa/hooks/useStorage';
+import useHistory from '../../pwa/hooks/useHistory';
+import useStorage from '../../pwa/hooks/useStorage';
 
 import styles from './styles.scss';
 
-const App = ({ routeComponent }) => {
+const App = ({ Router, children, subs }) => {
   const history = useHistory();
   const cookie = useStorage(COOKIE_STORAGE);
   console.log("cookie.get('Name')", cookie.get('Name'));
@@ -57,7 +57,11 @@ const App = ({ routeComponent }) => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item>{routeComponent}</Grid>
+        <Grid item>
+          <Router />
+          {children}
+          {subs}
+        </Grid>
       </Grid>
     </div>
   );

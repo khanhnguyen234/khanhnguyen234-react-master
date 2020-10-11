@@ -1,35 +1,20 @@
 import * as React from 'react';
-import createClientApp from './create-client-app';
-import Home from './modules/home/home.module';
-import AdminProductCreate from './modules/admin-product/admin-product.module';
-import ProductDetail from './modules/product-detail/product-detail.module';
+import createClientApp from './pwa/create-client-app';
+import { PWAModule } from './pwa/pwa-module';
+import ClientAppOptions from './pwa/interfaces/client-app-options.interface';
+import storages from '@khanhnguyen234/react-common/src/storages';
+import rootModule from './modules/root/root.module';
 
-import ProductListingData from './modules/home/dataSrc';
-import AdminProductCreateData from './modules/admin-product/dataSrc';
-import { INTERNAL_URLS } from './lib/const';
+const options: ClientAppOptions = {
+  appName: process.env.APP_NAME,
+  container: document.getElementById('root'),
+  module: rootModule,
+  storages: storages,
+  renderMode: 'render',
+  // enableReduxDevTools: window.__DEBUG__,
+  enableReduxDevTools: true,
+  enableSentry: window.__PROD__,
+  microFE: true,
+};
 
-const ROUTES = [
-  {
-    path: INTERNAL_URLS.adminProductCreate,
-    component: AdminProductCreate,
-  },
-  {
-    path: INTERNAL_URLS.adminProductDetail,
-    component: AdminProductCreate,
-  },
-  {
-    path: INTERNAL_URLS.productDetail,
-    component: ProductDetail,
-  },
-  {
-    path: INTERNAL_URLS.home,
-    component: Home,
-  },
-];
-
-const reduxSources = [ProductListingData, AdminProductCreateData];
-
-createClientApp({
-  routes: ROUTES,
-  reduxSources: reduxSources,
-});
+createClientApp(options);
