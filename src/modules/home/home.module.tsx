@@ -1,5 +1,5 @@
-import { PWAModule } from '../../pwa/pwa-module';
 import * as React from 'react';
+import PWAModule from '@khanhnguyen234/react-core/src/pwa-module';
 import _data from './dataSrc';
 import _s2 from './home.component';
 

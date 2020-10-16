@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PWAModule from '../../pwa/pwa-module';
+import PWAModule from '@khanhnguyen234/react-core/src/pwa-module';
 import ProductDetail from './product-detail.component';
 
 function Placeholder() {

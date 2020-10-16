@@ -1,33 +1,29 @@
-import { PWAModule } from '../../pwa/pwa-module';
 import * as React from 'react';
+import PWAModule from '@khanhnguyen234/react-core/src/pwa-module';
+import { INTERNAL_URLS } from '@khanhnguyen234/react-common/src/lib/const';
 import RootComponent from './root.component';
-import { INTERNAL_URLS } from '../../lib/const';
 
 function Placeholder() {
   return <div>HomeModule placeholder</div>;
 }
 
 const Module = new PWAModule({
-  name: 'RootModule',
+  name: 'RootMaster',
   placeholder: Placeholder,
   factory: async (ctx) => {
     const home = (await import('../home/home.module')).default;
     const productDetail = (
       await import('../product-detail/product-detail.module')
     ).default;
-    const adminProduct = (await import('../admin-product/admin-product.module'))
+    const admin = (await import('@khanhnguyen234/micro-react-admin/root'))
       .default;
     return {
       layout: RootComponent,
       named: {},
       routing: [
         {
-          path: INTERNAL_URLS.adminProductCreate,
-          module: adminProduct.getComponent(ctx),
-        },
-        {
-          path: INTERNAL_URLS.adminProductDetail,
-          module: adminProduct.getComponent(ctx),
+          path: '/admin',
+          module: admin.getComponent(ctx),
         },
         {
           path: INTERNAL_URLS.productDetail,

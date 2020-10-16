@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Image, Grid, Box } from '@khanhnguyen234/react-components';
-import ThreeDots from '../../lib/images/three-dots.icon.svg';
+import ThreeDots from '@khanhnguyen234/react-common/src/lib/images/three-dots.icon.svg';
 import styles from './styles.scss';
 
 const Index = ({ image, name, price, onClickCard, onClickDot }) => {

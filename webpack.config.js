@@ -21,7 +21,7 @@ const externalPackages = [
   '@khanhnguyen234/micro-react-components',
 ];
 const srcScripts = [
-  'https://khanhnguyen234-react-6htx7.s3.amazonaws.com/admin/remoteEntry.js',
+  'http://localhost:8081/remoteEntry.js',
   'https://khanhnguyen234-react-6htx7.s3.amazonaws.com/components/remoteEntry.js',
 ];
 
@@ -41,14 +41,14 @@ const CONFIG_MODE = {
         exclude: [/node_modules/],
         test: /\.ts($|\?)/i,
       }),
-    ]
+    ],
   },
   production: {
     sourceMap: false,
     publicPath: `https://${process.env.S3_BUCKET_NAME}.s3.amazonaws.com/${process.env.S3_BUCKET_KEY}/`,
     plugins: [],
-  }
-}
+  },
+};
 
 module.exports = (env, options) => {
   const mode = options.mode;
@@ -92,6 +92,12 @@ module.exports = (env, options) => {
     module: {
       rules: [
         {
+          test: /\.m?js/,
+          resolve: {
+            fullySpecified: false,
+          },
+        },
+        {
           test: /bootstrap\.tsx$/,
           loader: 'bundle-loader',
           options: {
@@ -103,6 +109,7 @@ module.exports = (env, options) => {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-react', '@babel/preset-typescript'],
+            plugins: ['transform-class-properties'],
           },
         },
         {
@@ -154,6 +161,17 @@ module.exports = (env, options) => {
         library: { type: 'var', name: 'app2' },
         remotes: remotes,
         // shared: ["react", "react-dom"],
+        shared: {
+          react: {
+            singleton: true,
+          },
+          'react-dom': {
+            singleton: true,
+          },
+          'react-redux': {
+            singleton: true,
+          },
+        },
       }),
     ].concat(CONFIG_MODE[mode].plugins),
     devServer: {
