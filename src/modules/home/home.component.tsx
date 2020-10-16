@@ -20,8 +20,6 @@ import {
   INTERNAL_URLS,
   CONFIG,
 } from '@khanhnguyen234/react-common/src/lib/const';
-import { Button } from '@material-ui/core';
-import { scrollToOffset } from '@khanhnguyen234/react-common';
 
 const HomeComponent = () => {
   const history = useHistory();
@@ -52,52 +50,11 @@ const HomeComponent = () => {
     history.push(`${INTERNAL_URLS.adminProductDetail.replace(':id', id)}`);
   };
 
-  const goHome = () => {
-    scrollToOffset({ top: 0 });
-    history.push('/');
-  };
-
-  const goCreateProduct = () => {
-    history.push('/admin/product/create');
-  };
-
   return (
     <Grid container spacing={6}>
       {status === STATUS.isLoading && (
         <Loading variant={BackdropVariant.grey} imageUrl={LOADING_IMAGE_URL} />
       )}
-
-      <Grid item container spacing={4}>
-        <Grid item>
-          <Grid item container alignItem="center" spacing={2}>
-            <Grid item xs="auto">
-              <Button
-                variant="contained"
-                color="secondary"
-                size="large"
-                onClick={goHome}
-              >
-                Home
-              </Button>
-            </Grid>
-            <Grid item xs="auto">
-              <Button
-                variant="contained"
-                color="secondary"
-                size="large"
-                onClick={goCreateProduct}
-              >
-                Create
-              </Button>
-            </Grid>
-            <Grid item xs={true}>
-              <Title className={styles.title}>
-                React + Typescript + Webpack + Workbox
-              </Title>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
       <Grid item container>
         <Box marginBottom={5}>
           <Grid item className={styles.header} alignItem="center">

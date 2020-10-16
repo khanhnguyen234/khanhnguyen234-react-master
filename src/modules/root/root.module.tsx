@@ -12,6 +12,7 @@ const Module = new PWAModule({
   placeholder: Placeholder,
   factory: async (ctx) => {
     const home = (await import('../home/home.module')).default;
+    const layout = (await import('../layout/layout.module')).default;
     const productDetail = (
       await import('../product-detail/product-detail.module')
     ).default;
@@ -19,10 +20,12 @@ const Module = new PWAModule({
       .default;
     return {
       layout: RootComponent,
-      named: {},
+      named: {
+        Layout: layout.getComponent(ctx),
+      },
       routing: [
         {
-          path: '/admin',
+          path: INTERNAL_URLS.admin,
           module: admin.getComponent(ctx),
         },
         {

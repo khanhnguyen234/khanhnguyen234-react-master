@@ -1,8 +1,10 @@
 import React from 'react';
 
-const Root = ({ Router, children, subs }) => {
+const Root = (props) => {
+  const { Router, children, subs, Layout } = props;
   return (
     <>
+      <Layout />
       <Router />
       {children}
       {subs}
