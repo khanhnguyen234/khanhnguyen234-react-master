@@ -13,6 +13,7 @@ const Module = new PWAModule({
   factory: async (ctx) => {
     const home = (await import('../home/home.module')).default;
     const layout = (await import('../layout/layout.module')).default;
+    const tracking = (await import('../tracking/tracking.module')).default;
     const productDetail = (
       await import('../product-detail/product-detail.module')
     ).default;
@@ -37,7 +38,7 @@ const Module = new PWAModule({
           module: home.getComponent(ctx),
         },
       ],
-      subs: [],
+      subs: [tracking.getComponent(ctx)],
     };
   },
 });
