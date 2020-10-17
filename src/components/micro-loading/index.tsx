@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Image, Grid } from '@khanhnguyen234/react-components';
-import { LOADING_IMAGE_URL } from '../../lib/const';
+import { LOADING_IMAGE_URL } from '@khanhnguyen234/react-common/src/lib/const';
 import styles from './styles.scss';
 
 const MicroLoading = ({ text }) => {

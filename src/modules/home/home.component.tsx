@@ -4,10 +4,11 @@ import {
   Grid,
   Loading,
   BackdropVariant,
+  Title,
 } from '@khanhnguyen234/react-components';
-import useHistory from '../../pwa/hooks/useHistory';
+import useHistory from '@khanhnguyen234/react-core/src/hooks/useHistory';
 import ProductCard from '../../components/product-card';
-import * as styles from './styles.scss';
+import styles from './styles.scss';
 import { useDispatch } from 'react-redux';
 import { requestApiAction, STATUS } from '../../utils/fetcher';
 import { actionType } from './dataSrc';
@@ -18,9 +19,9 @@ import {
   DEFAULT_PRODUCT_URL,
   INTERNAL_URLS,
   CONFIG,
-} from '../../lib/const';
+} from '@khanhnguyen234/react-common/src/lib/const';
 
-const ProductListing = () => {
+const HomeComponent = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { products: productListing, status } = useProductListing();
@@ -116,4 +117,4 @@ const ProductListing = () => {
   );
 };
 
-export default React.memo(ProductListing);
+export default React.memo(HomeComponent);

@@ -1,21 +1,16 @@
 import * as React from 'react';
 import PWAModule from '@khanhnguyen234/react-core/src/pwa-module';
-import _data from './dataSrc';
-import _s2 from './home.component';
 
 function Placeholder() {
-  return <div>HomeModule placeholder</div>;
+  return <div>Tracking placeholder</div>;
 }
 
 const HomeModule = new PWAModule({
-  name: 'HomeModule',
+  name: 'Tracking',
   placeholder: Placeholder,
   factory: async (ctx) => {
-    const [_data, _s2] = (
-      await Promise.allSettled([
-        import('./dataSrc'),
-        import('./home.component'),
-      ])
+    const [_s2] = (
+      await Promise.allSettled([import('./tracking.component')])
     ).map((pwaModule) => {
       pwaModule.status === 'rejected' && console.error(pwaModule.reason);
       return pwaModule.status === 'fulfilled' ? pwaModule.value.default : null;
@@ -25,7 +20,7 @@ const HomeModule = new PWAModule({
       named: {},
       routing: [],
       subs: [],
-      data: [_data].filter(Boolean),
+      data: [].filter(Boolean),
     };
   },
 });
