@@ -16,24 +16,20 @@ const envKeys = Object.keys(env || {}).reduce((prev, next) => {
 function removeChar(str) {
   return str.replace(/[^a-zA-Z0-9]/g, '');
 }
-const externalPackages = [
-  '@khanhnguyen234/micro-react-admin',
-  '@khanhnguyen234/micro-react-components',
-];
-const srcScripts = [
-  'http://localhost:8081/remoteEntry.js',
-  'https://khanhnguyen234-react-6htx7.s3.amazonaws.com/components/remoteEntry.js',
-];
+const externalPackages = ['@khanhnguyen234/micro-react-admin'];
+const srcScripts = [process.env.ADMIN_REMOTE];
 
 const remotes = externalPackages.reduce(function (remotes, package) {
   remotes[package] = removeChar(package);
   return remotes;
 }, {});
 
+console.log('=====  REMOTES  =====');
+console.log(remotes);
+
 const CONFIG_MODE = {
   development: {
     sourceMap: true,
-    publicPath: '/',
     devtool: 'inline-source-map',
     plugins: [
       new webpack.SourceMapDevToolPlugin({
@@ -45,7 +41,6 @@ const CONFIG_MODE = {
   },
   production: {
     sourceMap: false,
-    publicPath: `https://${process.env.S3_BUCKET_NAME}.s3.amazonaws.com/${process.env.S3_BUCKET_KEY}/`,
     plugins: [],
   },
 };
@@ -62,7 +57,7 @@ module.exports = (env, options) => {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
       chunkFilename: '[name].bundle.js',
-      publicPath: CONFIG_MODE[mode].publicPath,
+      publicPath: process.env.PUBLIC_PATH,
     },
     optimization: {
       splitChunks: {
@@ -160,7 +155,6 @@ module.exports = (env, options) => {
         name: packageName,
         library: { type: 'var', name: 'app2' },
         remotes: remotes,
-        // shared: ["react", "react-dom"],
         shared: {
           react: {
             singleton: true,
