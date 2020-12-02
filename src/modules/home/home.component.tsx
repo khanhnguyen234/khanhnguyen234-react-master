@@ -52,9 +52,9 @@ const HomeComponent = () => {
 
   return (
     <Grid container spacing={6}>
-      {status === STATUS.isLoading && (
-        <Loading variant={BackdropVariant.grey} imageUrl={LOADING_IMAGE_URL} />
-      )}
+      {/*{status === STATUS.isLoading && (*/}
+      {/*  <Loading variant={BackdropVariant.grey} imageUrl={LOADING_IMAGE_URL} />*/}
+      {/*)}*/}
       <Grid item container>
         <Box marginBottom={5}>
           <Grid item className={styles.header} alignItem="center">

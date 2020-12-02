@@ -1,50 +1,42 @@
-#### Reference
-- https://medium.com/@atingenkay/webpack-4-react-with-typescript-996eb78ff348 
-- https://webpack.js.org/concepts/loaders/
-- https://webpack.js.org/guides/progressive-web-application/#we-dont-work-offline-now
-- Use .env in CLI: https://medium.com/@arrayknight/how-to-use-env-variables-in-package-json-509b9b663867
+# ![Micro-Frontend With React + Webpack](https://www.bram.us/wordpress/wp-content/uploads/2016/04/es6-webpack-react-babel.png)
 
+# Implementing a Micro-Frontend Architecture With React and Webpack
 
-#### Issue Config
-- Import Syntax: can't use `import React from 'react'` must use `import * as React from 'react'` <br/>
-  Fix: *https://github.com/DefinitelyTyped/DefinitelyTyped/issues/5128* 
-  ```
-  // tsconfig.json
-  -----------------  
-    {
-      "compilerOptions": {
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-      }
-    }
-  ```
-  
-- Source Map not working: <br/>
-  Fix: *https://github.com/webpack/webpack/issues/7172*
-  ```
-  // webpack.config.js
-  -----------------
-    devtool: 'inline-source-map',
-    plugins: [
-      new webpack.SourceMapDevToolPlugin({
-        filename: null,
-        exclude: [/node_modules/],
-        test: /\.ts($|\?)/i,
-      })
-    ]
-  ```
-- Load .env Webpack: *https://medium.com/@trekinbami/using-environment-variables-in-react-6b0a99d83cf5*
-  ```
-  // webpack.config.js
-  -----------------
-  const dotenv = require('dotenv');
-  const env = dotenv.config().parsed;
-  const envKeys = Object.keys(env).reduce((prev, next) => {
-    prev[`process.env.${next}`] = JSON.stringify(env[next]);
-    return prev;
-  }, {});
-  -----------------
-  plugins: [
-      new webpack.DefinePlugin(envKeys),
-  ]
-  ```
+## Features
+- React 16
+- Webpack 5
+- Redux
+- Babel 7
+- SCSS 
+
+## Prepare
+
+- `git clone https://github.com/khanhnguyen234/khanhnguyen234-react-master.git`
+- `git clone https://github.com/khanhnguyen234/khanhnguyen234-react-admin.git`
+
+## Usage Locally
+
+In `khanhnguyen234-react-admin` project:
+```
+cp .env.example .env
+
+yarn
+
+yarn dev
+```
+
+In `khanhnguyen234-react-master` project:
+```
+cp .env.example .env
+
+yarn
+
+yarn dev
+```
+
+Visit [http://localhost:8080](http://localhost:8080)
+
+## References
+- https://indepth.dev/posts/1173/webpack-5-module-federation-a-game-changer-in-javascript-architecture
+- https://microfrontends.cn/english.html#why-micro-frontends-be-popular-%E2%80%93-aggregation-of-web-applications
+
